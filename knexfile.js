@@ -2,10 +2,10 @@ module.exports = {
 
   // For development on your local machine.
   development: {
-    client: 'pg',
+    client: 'postgres',
     useNullAsDefault: true,
     migrations: {
-      directory: './src/migrations'     // Directory to migration files of the project.
+      directory: './src/db/migrations'     // Directory to migration files of the project.
     },
     seeds: {
       directory: './src/seeds'          // Directory to seeds files of the project.
@@ -13,7 +13,7 @@ module.exports = {
     connection: {
       host: "localhost",
       user: "ashishbakliwal",
-      password: "postgres",
+      password: "",
       database: "twitter-clone"           // Create Database with same name on your local machine in postgres or change the name these with your database name.
     }
   }
