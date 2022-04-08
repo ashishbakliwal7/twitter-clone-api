@@ -13,6 +13,17 @@ const getOne = async (req: Request, res: Response) => {
   }
 };
 
+const geByUserName = async (req: Request, res: Response) => {
+  const userName = req.params.username;
+  try {
+    const [user] = await userService.getUserByUserName(userName);
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+
 const addOne = async (req: Request, res: Response) => {
   const body = req.body;
   try {
@@ -25,26 +36,17 @@ const addOne = async (req: Request, res: Response) => {
 };
 
 const listAll = async (req: Request, res: Response) => {
-  const id = req.query.id ? req.query.id : null;
-  const search = req.query.search ? req.query.search : null;
-  const offset = req.query.offset ? req.query.offset : null;
-  const rows = req.query.rows ? req.query.rows : null;
-  const sortCol = req.query.sortCol ? req.query.sortCol : null;
-  const sortDir = req.query.sortDir ? req.query.sortDir : null;
-  const countOnly = req.query.countOnly ? req.query.countOnly : null;
-
-  res.send({
-    data: "",
-  });
+  try {
+    const user = await userService.getAllUser();
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
 };
 
 const destroy = async (req: Request, res: Response) => {
   const id = req.params.id;
-  const body = req.body;
-  const title = body.title ? body.title : null;
-  const content = body.content ? body.content : null;
-  const deleted = true;
-  const updateAll = false;
   if (!id)
     return res.send({
       message: "No id",
@@ -59,10 +61,6 @@ const destroy = async (req: Request, res: Response) => {
 const updateRecord = async (req: Request, res: Response) => {
   const id = req.params.id;
   const body = req.body;
-  const title = body.title ? body.title : null;
-  const content = body.content ? body.content : null;
-  const deleted = false;
-  const updateAll = false;
   if (!id)
     return res.send({
       message: "No id",
@@ -83,6 +81,7 @@ const UserController = {
   listAll,
   updateRecord,
   destroy,
+  geByUserName
 };
 
 export default UserController;

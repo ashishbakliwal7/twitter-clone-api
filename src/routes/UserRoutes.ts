@@ -8,6 +8,8 @@ router.get("/", UserController.listAll);
 
 router.get("/:id", UserController.getOne);
 
+router.get("/profile/:username", UserController.geByUserName);
+
 router.post("/", UserController.addOne);
 
 router.put("/:id", UserController.updateRecord);

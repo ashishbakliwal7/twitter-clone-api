@@ -7,6 +7,10 @@ class UserDb {
     return User.query().findById(id);
   }
 
+  getAll() {
+    return User.query();
+  }
+
   createUser(data: ICreateUser) {
     return User.query().insert({
       first_name: data.firstName,
@@ -19,7 +23,8 @@ class UserDb {
   }
 
   findByUserName(userName: string) {
-    return User.query().where("user_name", userName);
+    console.log(userName)
+    return User.query().where("username", userName);
   }
 }
 
