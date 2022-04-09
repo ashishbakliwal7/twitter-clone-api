@@ -1,5 +1,5 @@
 import { ICreateUser } from "./IUserInterface";
-const userDb = require('../../db/userDb');
+const userDb = require("../../db/userDb");
 class UserService {
   getAllUser() {
     return userDb.getAll();
@@ -10,11 +10,11 @@ class UserService {
   }
 
   getUserByUserName(userName: string) {
-  return userDb.findByUserName(userName);
+    return userDb.findByUserName(userName);
   }
 
   createUser(data: ICreateUser) {
-    return userDb.create(data);
+    return userDb.createUser(data);
   }
 }
 

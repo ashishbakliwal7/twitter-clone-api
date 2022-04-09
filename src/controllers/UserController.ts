@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-
-const userService = require('../service/user/UserService');
+import validation from "../utils/validation";
+const userService = require("../service/user/UserService");
 
 const getOne = async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -27,6 +27,8 @@ const geByUserName = async (req: Request, res: Response) => {
 const addOne = async (req: Request, res: Response) => {
   const body = req.body;
   try {
+    const { error } = validation.registerValidation(body);
+    if (error) return res.status(400).send(error.details[0].message);
     const user = await userService.createUser(body);
     res.json(user);
   } catch (err) {
@@ -52,7 +54,6 @@ const destroy = async (req: Request, res: Response) => {
       message: "No id",
     });
 
-
   res.send({
     data: "",
   });
@@ -66,14 +67,10 @@ const updateRecord = async (req: Request, res: Response) => {
       message: "No id",
     });
 
-
-
   res.send({
     data: "",
   });
 };
-
-
 
 const UserController = {
   addOne,
@@ -81,7 +78,7 @@ const UserController = {
   listAll,
   updateRecord,
   destroy,
-  geByUserName
+  geByUserName,
 };
 
 export default UserController;

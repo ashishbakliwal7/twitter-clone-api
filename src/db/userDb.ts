@@ -23,7 +23,6 @@ class UserDb {
   }
 
   findByUserName(userName: string) {
-    console.log(userName)
     return User.query().where("username", userName);
   }
 }

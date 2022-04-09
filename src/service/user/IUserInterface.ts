@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 interface ICreateUser {
   firstName: string;
@@ -9,4 +9,4 @@ interface ICreateUser {
   userName: string;
 }
 
-export { ICreateUser }
+export { ICreateUser };

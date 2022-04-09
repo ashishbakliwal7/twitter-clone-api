@@ -2,10 +2,10 @@ import bodyParser from "body-parser";
 import express from "express";
 
 import UserRoutes from "./routes/UserRoutes";
-import db from "./db/db"
+import db from "./db/db";
 export const app = express();
 
-db.initiate()
+db.initiate();
 
 var cors = require("cors");
 app.use(cors());
