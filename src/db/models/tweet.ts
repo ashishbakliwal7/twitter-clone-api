@@ -1,7 +1,7 @@
 const { Model } = require("objection");
 
-export default class User extends Model {
+export default class Tweet extends Model {
   static get tableName() {
-    return "user";
+    return "tweet";
   }
 }

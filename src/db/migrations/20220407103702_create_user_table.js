@@ -12,6 +12,9 @@ exports.up = function(knex) {
       table.string('password').notNullable();
       table.string('phone').notNullable().unique();
       table.string('email').notNullable().unique();
+      table.string('bio').notNullable().defaultTo('');
+      table.integer('following').notNullable().defaultTo(0);
+      table.integer('follower').notNullable().defaultTo(0);
       table.timestamps(true, true);
     })
 };

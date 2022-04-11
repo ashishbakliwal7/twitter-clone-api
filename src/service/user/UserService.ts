@@ -1,19 +1,19 @@
 import { ICreateUser } from "./IUserInterface";
 const userDb = require("../../db/userDb");
 class UserService {
-  getAllUser() {
-    return userDb.getAll();
+  async getAllUser() {
+    return await userDb.getAll();
   }
 
-  getUserById(id: number) {
+  async getUserById(id: number) {
     return userDb.findById(id);
   }
 
-  getUserByUserName(userName: string) {
+  async getUserByUserName(userName: string) {
     return userDb.findByUserName(userName);
   }
 
-  createUser(data: ICreateUser) {
+  async createUser(data: ICreateUser) {
     return userDb.createUser(data);
   }
 }

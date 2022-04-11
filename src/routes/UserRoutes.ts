@@ -1,12 +1,13 @@
 import { Router } from "express";
 
 import UserController from "../controllers/UserController";
+import middleware from "../utils/auth-middleware";
 
 const router = Router();
 
 router.get("/", UserController.listAll);
 
-router.get("/:id", UserController.getOne);
+router.get("/:id", middleware.userAuth, UserController.getOne);
 
 router.get("/profile/:username", UserController.geByUserName);
 
