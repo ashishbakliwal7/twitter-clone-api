@@ -7,13 +7,14 @@ class TweetDb {
     return await Tweet.query().findById(id);
   }
 
-  async getAll() {
-    return await Tweet.query();
+  async getAll(userId: number) {
+    return await Tweet.query().where("created_by", userId);
   }
 
-  async createUser(data: ICreateTweet) {
+  async createTweet(data: ICreateTweet) {
     return await Tweet.query().insert({
       tweet: data.tweet,
+      created_by: data.userId,
     });
   }
 }

@@ -6,6 +6,7 @@ const userAuth = (req: any, res: any, next: any): any => {
 
   try {
     const verified = jwt.verify(token, process.env.JWT_TOKEN);
+    console.log(verified);
     req.user = verified;
     next();
   } catch (e) {

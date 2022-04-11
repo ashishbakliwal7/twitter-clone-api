@@ -7,7 +7,7 @@
     .createTable('tweet', (table) => {
       table.increments();
       table.string('tweet').notNullable();
-      table.string('created_by').notNullable();
+      table.integer('created_by').notNullable();
       table.integer('likes').notNullable().defaultTo(0);
       table.integer('parent_tweet').defaultTo(null);
       table.timestamps(true, true);

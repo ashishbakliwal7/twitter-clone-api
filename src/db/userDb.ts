@@ -8,7 +8,7 @@ class UserDb {
   }
 
   async getAll() {
-    return await User.query();
+    return User.query();
   }
 
   async createUser(data: ICreateUser) {
@@ -27,7 +27,7 @@ class UserDb {
   }
 
   async loginUser(email: string, password: string) {
-    return await User.query().where("email", email).where("password", password);
+    return User.query().where("email", email).where("password", password);
   }
 }
 

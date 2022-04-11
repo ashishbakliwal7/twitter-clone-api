@@ -1,7 +1,9 @@
-const { Model } = require("objection");
+import { Model } from "objection";
 
-export default class Tweet extends Model {
+class Tweet extends Model {
   static get tableName() {
     return "tweet";
   }
 }
+
+module.exports = Tweet;
