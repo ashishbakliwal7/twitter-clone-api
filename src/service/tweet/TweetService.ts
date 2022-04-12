@@ -2,15 +2,16 @@ import { ICreateTweet } from "./ITweetInterface";
 const tweetDb = require("../../db/tweetDb");
 class TweetService {
   async getAllTweet(data: any) {
+    console.log(data);
     return await tweetDb.getAll(data.userId);
   }
 
   async createTweet(data: ICreateTweet) {
-    return tweetDb.createTweet(data);
+    return await tweetDb.createTweet(data);
   }
 
   async userTweetFeed() {
-    return await tweetDb.getAll();
+    return await tweetDb.tweetFeed();
   }
 }
 

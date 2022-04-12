@@ -8,6 +8,7 @@
       table.increments();
       table.integer('user_id').notNullable();
       table.integer('follower_id').notNullable();
+      table.unique(['user_id', 'follower_id']);
       table.timestamps(true, true);
     })
 };

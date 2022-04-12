@@ -3,18 +3,18 @@ import { Router } from "express";
 import UserController from "../controllers/UserController";
 import middleware from "../utils/auth-middleware";
 
-const router = Router();
+const UserRoutes = Router();
 
-router.get("/", UserController.listAll);
+UserRoutes.get("/", UserController.listAll);
 
-router.get("/:id", middleware.userAuth, UserController.getOne);
+UserRoutes.get("/:id", middleware.userAuth, UserController.getOne);
 
-router.get("/profile/:username", UserController.geByUserName);
+UserRoutes.get("/profile/:username", UserController.geByUserName);
 
-router.post("/", UserController.addOne);
+UserRoutes.post("/", UserController.addOne);
 
-router.put("/:id", UserController.updateRecord);
+UserRoutes.put("/:id", UserController.updateRecord);
 
-router.delete("/:id", UserController.destroy);
+UserRoutes.delete("/:id", UserController.destroy);
 
-export default router;
+export default UserRoutes;
