@@ -16,8 +16,9 @@ class TweetDb {
 
   async tweetFeed(userId: number) {
     let users = await Follower.query()
-      .select("follower_id")
-      .where("user_id", userId);
+      .select("user_id")
+      .where("follower_id", userId);
+
     users = users.map((item: any) => item.follower_id);
 
     return await Tweet.query()
