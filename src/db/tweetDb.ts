@@ -19,11 +19,11 @@ class TweetDb {
       .select("user_id")
       .where("follower_id", userId);
 
-    users = users.map((item: any) => item.follower_id);
+    users = users.map((item: any) => item.user_id);
 
     return await Tweet.query()
       .withGraphFetched("user")
-      .whereIn("created_by", [...users])
+      .whereIn("created_by", [...users, userId])
       .orderBy("created_at", "desc");
   }
 
