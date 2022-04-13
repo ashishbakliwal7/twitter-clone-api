@@ -21,14 +21,11 @@ const addTweet = async (req: any, res: Response) => {
   }
 };
 
-const tweetFeed = async (req: Request, res: Response) => {
+const tweetFeed = async (req: any, res: Response) => {
   const body = req.body;
   try {
-    const { error } = validation.loginValidation(body);
-    if (error) return res.status(400).send(error.details[0].message);
-    const [tweet] = await tweetService.userTweetFeed(body);
-
-    res.json({ message: "Tweeted" });
+    const tweet = await tweetService.userTweetFeed({ userId: req.user._id });
+    res.json({ data: tweet });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);

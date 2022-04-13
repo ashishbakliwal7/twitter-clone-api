@@ -4,7 +4,10 @@ const User = require("./models/user");
 
 class UserDb {
   async findById(id: number) {
-    return await User.query().findById(id);
+    return await User.query()
+      .withGraphFetched("follower")
+      .withGraphFetched("following")
+      .findById(id);
   }
 
   async getAll() {

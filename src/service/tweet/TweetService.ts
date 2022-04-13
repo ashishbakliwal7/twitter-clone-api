@@ -10,8 +10,8 @@ class TweetService {
     return await tweetDb.createTweet(data);
   }
 
-  async userTweetFeed() {
-    return await tweetDb.tweetFeed();
+  async userTweetFeed(data: any) {
+    return await tweetDb.tweetFeed(data.userId);
   }
 }
 

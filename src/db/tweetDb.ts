@@ -1,5 +1,5 @@
 import { ICreateTweet } from "../service/tweet/ITweetInterface";
-import Follower from "./models/follower";
+const Follower = require("./models/follower");
 
 const Tweet = require("./models/tweet");
 
@@ -14,10 +14,12 @@ class TweetDb {
       .where("created_by", userId);
   }
 
-  async tweetfeed(userId: number) {
+  async tweetFeed(userId: number) {
     let users = await Follower.query()
       .select("follower_id")
       .where("user_id", userId);
+    users = users.map((item: any) => item.follower_id);
+
     return await Tweet.query()
       .withGraphFetched("user")
       .whereIn("created_by", [...users])

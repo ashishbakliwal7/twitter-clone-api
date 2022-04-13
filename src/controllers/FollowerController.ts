@@ -2,10 +2,15 @@ import { Request, Response } from "express";
 import validation from "../utils/validation";
 const followerService = require("../service/follower/FollowerService");
 
-const follow = async (req: Request, res: Response) => {
+const follow = async (req: any, res: Response) => {
   const body = req.body;
   try {
-    const [followUser] = await followerService.followUser(body);
+    console.log(body);
+    const followUser = await followerService.followUser({
+      userId: req.user._id,
+      followingId: body.followingId,
+    });
+    console.log(followUser);
     if (followUser) {
       return res.json({ followUser: followUser });
     } else {
@@ -16,10 +21,13 @@ const follow = async (req: Request, res: Response) => {
   }
 };
 
-const unFollow = async (req: Request, res: Response) => {
+const unFollow = async (req: any, res: Response) => {
   const body = req.body;
   try {
-    const [unFollowUser] = await followerService.unFollowUser(body);
+    const unFollowUser = await followerService.unFollowUser({
+      userId: req.user._id,
+      followingId: body.followingId,
+    });
     if (unFollowUser) {
       return res.json({ unFollowUser: unFollowUser });
     } else {

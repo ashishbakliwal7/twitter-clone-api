@@ -12,6 +12,7 @@ class TweetDb {
   }
 
   async followUser(data: IFollowerUser) {
+    console.log(data);
     return await Follower.query().insert({
       user_id: data.userId,
       follower_id: data.followingId,
@@ -19,7 +20,9 @@ class TweetDb {
   }
 
   async unFollowUser(data: IFollowerUser) {
-    return await Follower.delete()
+    console.log(data);
+    return await Follower.query()
+      .delete()
       .where("user_id", data.userId)
       .where("follower_id", data.followingId);
   }

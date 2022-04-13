@@ -7,14 +7,18 @@ class TweetService {
   }
 
   async followUser(data: IFollowerUser) {
+    console.log(data);
     return followerDb.followUser({
       userId: data.userId,
       followingId: data.followingId,
     });
   }
 
-  async unFollowUser() {
-    return await followerDb.unFollowUser();
+  async unFollowUser(data: IFollowerUser) {
+    return await followerDb.unFollowUser({
+      userId: data.userId,
+      followingId: data.followingId,
+    });
   }
 }
 

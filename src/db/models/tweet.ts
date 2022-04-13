@@ -10,6 +10,7 @@ class Tweet extends Model {
       user: {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
+        filter: (query: any) => query.select("username"),
         join: {
           from: "tweet.created_by",
           to: "user.id",
